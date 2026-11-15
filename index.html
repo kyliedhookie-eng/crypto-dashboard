@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <main class="dashboard">
+        <header class="dashboard-header">
+            <h1>Crypto Dashboard</h1>
+            <div class="controls">
+                <span id="last-updated"></span>
+                <label class="toggle">
+                    <input type="checkbox" id="auto-refresh"> Auto-refresh (60s)
+                </label>
+                <button id="refresh-btn">Refresh</button>
+            </div>
+        </header>
+
+        <section class="toolbar">
+            <input type="search" id="search" placeholder="Search coins...">
+            <select id="currency">
+                <option value="usd">USD</option>
+                <option value="zar">ZAR</option>
+                <option value="eur">EUR</option>
+            </select>
+            <select id="sort">
+                <option value="rank">Market cap</option>
+                <option value="price">Price (high to low)</option>
+                <option value="change">24h change (best first)</option>
+            </select>
+            <button id="favorites-btn" class="ghost">☆ Favorites only</button>
+        </section>
+
+        <div id="status" class="status hidden"></div>
+        <section id="coin-grid" class="coin-grid"></section>
+
+        <footer class="footer">
+            Data provided by <a href="https://www.coingecko.com" target="_blank" rel="noopener">CoinGecko</a>
+        </footer>
+    </main>
+
+    <!-- Part 3: the chart popup -->
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <button id="modal-close" class="close-btn" aria-label="Close">✕</button>
+            <h2 id="modal-title" class="modal-title"></h2>
+            <div id="range-buttons" class="range-buttons">
+                <button data-days="1">1D</button>
+                <button data-days="7" class="active">7D</button>
+                <button data-days="30">30D</button>
+            </div>
+            <p id="chart-status" class="chart-status"></p>
+            <div class="chart-wrap">
+                <canvas id="price-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
